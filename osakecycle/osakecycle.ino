@@ -88,40 +88,34 @@ int cycle(float tem) {
   delay(10); // <-これ要ら無くないですか？
 }
 
-
+unsigned long mytime;
 void loop(void) {
   //  unsigned long time = 0;
   //  time = millis();
-  unsigned long mytime = millis() //timeは予約語なので変数利用禁止(多分)
+  //timeは予約語なので変数利用禁止(多分)
 
-  while (1) {
-    if (cycle(95.0) == 1) break;
+  while (cycle(95.0) != 1) {
   }
+  
   mytime = millis();
-
-  while (1) {
+  while (millis() - mytime < 180000) {
     int key = cycle(95.0);
-    if (millis() - mytime > 180000) break;
   }
 
   for (int i = 0; i < 30; i++) {
-    while (1) {
-      if (cycle(95.0) == 1) break;
+    while (cycle(95.0) != 1) {
     }
-    
+
     mytime = millis();
-    while (1) {
+    while (millis() - mytime < 15000) {
       int key = cycle(95.0);
-      if (millis() - mytime > 15000) break;
     }
-    while (1) {
-      if (cycle(59.0) == 1) break;
+    while (cycle(59.0) != 1) {
     }
-    
+
     mytime = millis();
-    while (1) {
+    while (millis() - mytime < 45000) {
       int key = cycle(59.0);
-      if (millis() - mytime > 45000) break;
     }
     Serial.println(i);
     ESP_BT.println(i);
